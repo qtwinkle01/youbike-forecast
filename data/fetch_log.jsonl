@@ -1768,3 +1768,23 @@
 {"ts": "2026-11-16T08:15:00.936145+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716799, "pages": 2, "ok": true, "elapsed_s": 2.75}
 {"ts": "2026-11-16T08:19:59.983962+00:00", "source": "youbike_taipei", "rows": 1824, "bytes": 955463, "ok": true, "elapsed_s": 0.88}
 {"ts": "2026-11-16T08:20:00.870785+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716811, "pages": 2, "ok": true, "elapsed_s": 0.86}
+{"ts": "2026-11-16T08:24:59.981682+00:00", "source": "youbike_taipei", "rows": 1824, "bytes": 955466, "ok": true, "elapsed_s": 1.07}
+{"ts": "2026-11-16T08:25:01.055647+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716801, "pages": 2, "ok": true, "elapsed_s": 1.7}
+{"ts": "2026-11-16T08:29:59.981337+00:00", "source": "youbike_taipei", "rows": 1824, "bytes": 955460, "ok": true, "elapsed_s": 0.9}
+{"ts": "2026-11-16T08:30:00.879598+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716814, "pages": 2, "ok": true, "elapsed_s": 3.49}
+{"ts": "2026-11-16T08:34:59.984161+00:00", "source": "youbike_taipei", "rows": 1824, "bytes": 955467, "ok": true, "elapsed_s": 0.83}
+{"ts": "2026-11-16T08:35:00.816382+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716842, "pages": 2, "ok": true, "elapsed_s": 1.59}
+{"ts": "2026-11-16T08:39:59.981949+00:00", "source": "youbike_taipei", "rows": 1824, "bytes": 955477, "ok": true, "elapsed_s": 0.88}
+{"ts": "2026-11-16T08:40:00.863407+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716845, "pages": 2, "ok": true, "elapsed_s": 1.83}
+{"ts": "2026-11-16T08:44:59.982202+00:00", "source": "youbike_taipei", "rows": 1824, "bytes": 955466, "ok": true, "elapsed_s": 0.88}
+{"ts": "2026-11-16T08:45:00.861919+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716866, "pages": 2, "ok": true, "elapsed_s": 2.4}
+{"ts": "2026-11-16T08:49:59.984592+00:00", "source": "youbike_taipei", "rows": 1824, "bytes": 955464, "ok": true, "elapsed_s": 0.85}
+{"ts": "2026-11-16T08:50:00.840165+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716891, "pages": 2, "ok": true, "elapsed_s": 1.32}
+{"ts": "2026-11-16T08:54:59.982070+00:00", "source": "youbike_taipei", "rows": 1824, "bytes": 955462, "ok": true, "elapsed_s": 0.87}
+{"ts": "2026-11-16T08:55:00.859560+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716907, "pages": 2, "ok": true, "elapsed_s": 2.73}
+{"ts": "2026-11-16T08:59:59.777495+00:00", "source": "weather_taipei", "bytes": 2651, "ok": true, "elapsed_s": 0.9}
+{"ts": "2026-11-16T08:59:59.984079+00:00", "source": "youbike_taipei", "rows": 1824, "bytes": 955455, "ok": true, "elapsed_s": 0.85}
+{"ts": "2026-11-16T09:00:00.681755+00:00", "source": "weather_newtaipei", "bytes": 2652, "ok": true, "elapsed_s": 0.24}
+{"ts": "2026-11-16T09:00:00.836324+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716910, "pages": 2, "ok": true, "elapsed_s": 4.75}
+{"ts": "2026-11-16T09:04:59.985204+00:00", "source": "youbike_taipei", "rows": 1824, "bytes": 955467, "ok": true, "elapsed_s": 0.86}
+{"ts": "2026-11-16T09:05:00.845047+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716948, "pages": 2, "ok": true, "elapsed_s": 2.16}
