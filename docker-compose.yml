@@ -1,0 +1,15 @@
+services:
+  collector:
+    build: .
+    container_name: youbike-collector
+    restart: unless-stopped
+    environment:
+      INTERVAL_SECONDS: "300"
+      WEATHER_INTERVAL_SECONDS: "3600"
+    volumes:
+      - ./data:/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -1,0 +1,23 @@
+# collector runtime files
+data/heartbeat
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# secrets / local config
+.env
+.env.*
+.streamlit/secrets.toml
+
+# local working notes
+HANDOFF.md
+
+# tooling
+.claude/
+.vscode/
+.idea/
