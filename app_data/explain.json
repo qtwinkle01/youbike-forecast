@@ -1,0 +1,404 @@
+{
+  "drivers": {
+    "families": {
+      "current state": 0.5212,
+      "yesterday": 0.2913,
+      "neighbours": 0.2346,
+      "time": 0.1675,
+      "recent trend": 0.1615,
+      "weather": 0.1323,
+      "location": 0.019
+    },
+    "features": {
+      "bikes_now": 0.2899,
+      "yday_delta_60m": 0.2408,
+      "fill_now": 0.2127,
+      "nbr_delta_60m": 0.1759,
+      "hour": 0.163,
+      "delta_60m": 0.1009,
+      "delta_15m": 0.084,
+      "bikes_yday_target": 0.0778,
+      "nbr_fill_mean": 0.073,
+      "docks_free_now": 0.069,
+      "cur_temp": 0.0613,
+      "bikes_yday_now": 0.036,
+      "fc_precip_prob": 0.0356,
+      "cur_humidity": 0.0283,
+      "nbr_bikes_mean": 0.0273,
+      "nbr_km_mean": 0.025,
+      "fc_temp": 0.0249,
+      "dow": 0.0224,
+      "cur_wind": 0.0201,
+      "capacity": 0.0162,
+      "fc_precip": 0.0145,
+      "is_taipei": 0.011,
+      "lat": 0.0089,
+      "is_weekend": 0.0088,
+      "lng": 0.0072,
+      "cur_precip": 0.0021
+    },
+    "time_push_by_hour": {
+      "weekday": {
+        "0": 0.2,
+        "1": 0.18,
+        "2": 0.17,
+        "3": 0.16,
+        "4": 0.15,
+        "5": 0.24,
+        "6": 0.52,
+        "7": 0.46,
+        "8": 0.24,
+        "9": 0.17,
+        "10": 0.12,
+        "11": 0.11,
+        "12": 0.08,
+        "13": 0.09,
+        "14": 0.08,
+        "15": 0.09,
+        "16": 0.13,
+        "17": 0.16,
+        "18": 0.15,
+        "19": 0.11,
+        "20": 0.1,
+        "21": 0.16,
+        "22": 0.18,
+        "23": 0.17
+      },
+      "weekend": {
+        "0": 0.21,
+        "1": 0.21,
+        "2": 0.2,
+        "3": 0.2,
+        "4": 0.18,
+        "5": 0.09,
+        "6": 0.2,
+        "7": 0.21,
+        "8": 0.13,
+        "9": 0.09,
+        "10": 0.09,
+        "11": 0.07,
+        "12": 0.06,
+        "13": 0.06,
+        "14": 0.05,
+        "15": 0.06,
+        "16": 0.11,
+        "17": 0.14,
+        "18": 0.13,
+        "19": 0.11,
+        "20": 0.1,
+        "21": 0.19,
+        "22": 0.24,
+        "23": 0.23
+      }
+    },
+    "fill_direction": {
+      "(-0.01, 0.1]": 0.42,
+      "(0.1, 0.3]": 0.13,
+      "(0.3, 0.5]": -0.0,
+      "(0.5, 0.7]": -0.13,
+      "(0.7, 0.9]": -0.51,
+      "(0.9, 5.0]": -0.99
+    }
+  },
+  "what_if_daytype": [
+    {
+      "day": "2026-11-17",
+      "hour": 8,
+      "stations": 3397,
+      "mean_change_weekday": -0.8300668882569379,
+      "mean_change_as_sunday": -0.7475117731550655,
+      "share_moved_1plus": 0.0,
+      "share_moved_3plus": 0.0,
+      "top_lose": [
+        {
+          "name": "YouBike2.0_民樂人行廣場",
+          "district": "中和區",
+          "bikes_now": 21.0,
+          "weekday": -5.3,
+          "as_sunday": -4.8,
+          "diff": -0.5
+        },
+        {
+          "name": "YouBike2.0_輕軌淡金北新站",
+          "district": "淡水區",
+          "bikes_now": 20.0,
+          "weekday": -2.8,
+          "as_sunday": -2.2,
+          "diff": -0.5
+        },
+        {
+          "name": "YouBike2.0_捷運廣慈/奉天宮站(1號出口)",
+          "district": "信義區",
+          "bikes_now": 21.0,
+          "weekday": -4.9,
+          "as_sunday": -4.4,
+          "diff": -0.5
+        },
+        {
+          "name": "YouBike2.0_捷運南港展覽館站(5號出口)",
+          "district": "南港區",
+          "bikes_now": 12.0,
+          "weekday": -7.6,
+          "as_sunday": -7.1,
+          "diff": -0.5
+        },
+        {
+          "name": "YouBike2.0_中正高中",
+          "district": "北投區",
+          "bikes_now": 18.0,
+          "weekday": -10.3,
+          "as_sunday": -9.8,
+          "diff": -0.5
+        }
+      ],
+      "top_gain": [
+        {
+          "name": "YouBike2.0_臺北市立大學(博愛校區)",
+          "district": "中正區",
+          "bikes_now": 28.0,
+          "weekday": 30.6,
+          "as_sunday": 29.9,
+          "diff": 0.7
+        },
+        {
+          "name": "YouBike2.0_臺北南山廣場_1",
+          "district": "信義區",
+          "bikes_now": 15.0,
+          "weekday": 34.2,
+          "as_sunday": 33.6,
+          "diff": 0.7
+        },
+        {
+          "name": "YouBike2.0_安康高中",
+          "district": "新店區",
+          "bikes_now": 52.0,
+          "weekday": 9.3,
+          "as_sunday": 8.8,
+          "diff": 0.6
+        },
+        {
+          "name": "YouBike2.0_臺大數學研究中心(東側)",
+          "district": "臺大公館校區",
+          "bikes_now": 10.0,
+          "weekday": 34.3,
+          "as_sunday": 33.7,
+          "diff": 0.6
+        },
+        {
+          "name": "YouBike2.0_臺大工綜館南側",
+          "district": "臺大公館校區",
+          "bikes_now": 26.0,
+          "weekday": 18.4,
+          "as_sunday": 17.9,
+          "diff": 0.4
+        }
+      ]
+    },
+    {
+      "day": "2026-11-16",
+      "hour": 18,
+      "stations": 3396,
+      "mean_change_weekday": -0.1878055083391843,
+      "mean_change_as_sunday": -0.13288376572108448,
+      "share_moved_1plus": 0.0,
+      "share_moved_3plus": 0.0,
+      "top_lose": [
+        {
+          "name": "YouBike2.0_鶯歌國民運動中心",
+          "district": "鶯歌區",
+          "bikes_now": 30.0,
+          "weekday": -5.0,
+          "as_sunday": -4.4,
+          "diff": -0.6
+        },
+        {
+          "name": "YouBike2.0_興南路二段34巷口",
+          "district": "中和區",
+          "bikes_now": 29.0,
+          "weekday": -6.4,
+          "as_sunday": -5.8,
+          "diff": -0.5
+        },
+        {
+          "name": "YouBike2.0_南勢市民活動中心",
+          "district": "林口區",
+          "bikes_now": 30.0,
+          "weekday": -3.2,
+          "as_sunday": -2.6,
+          "diff": -0.5
+        },
+        {
+          "name": "YouBike2.0_捷運行天宮站(3號出口)",
+          "district": "中山區",
+          "bikes_now": 40.0,
+          "weekday": -7.9,
+          "as_sunday": -7.4,
+          "diff": -0.5
+        },
+        {
+          "name": "YouBike2.0_三重行政中心",
+          "district": "三重區",
+          "bikes_now": 30.0,
+          "weekday": -3.7,
+          "as_sunday": -3.2,
+          "diff": -0.5
+        }
+      ],
+      "top_gain": [
+        {
+          "name": "YouBike2.0_成美抽水站",
+          "district": "內湖區",
+          "bikes_now": 6.0,
+          "weekday": 0.0,
+          "as_sunday": -0.0,
+          "diff": 0.1
+        },
+        {
+          "name": "YouBike2.0_成功路二段/石潭路(西南側)",
+          "district": "內湖區",
+          "bikes_now": 8.0,
+          "weekday": -3.9,
+          "as_sunday": -4.0,
+          "diff": 0.1
+        },
+        {
+          "name": "YouBike2.0_八德市場(北側)",
+          "district": "中山區",
+          "bikes_now": 5.0,
+          "weekday": -1.3,
+          "as_sunday": -1.4,
+          "diff": 0.1
+        },
+        {
+          "name": "YouBike2.0_復興市民路口",
+          "district": "中山區",
+          "bikes_now": 7.0,
+          "weekday": -2.0,
+          "as_sunday": -2.1,
+          "diff": 0.1
+        },
+        {
+          "name": "YouBike2.0_臺北南山廣場_1",
+          "district": "信義區",
+          "bikes_now": 36.0,
+          "weekday": -13.4,
+          "as_sunday": -13.4,
+          "diff": 0.1
+        }
+      ]
+    }
+  ],
+  "what_if_rain": {
+    "day": "2026-11-17",
+    "hour": 8,
+    "mm": 5.0,
+    "mean_diff": 0.17660282857478815,
+    "mean_abs_diff": 0.5538846320765569,
+    "max_precip_seen": 2.4000000953674316,
+    "share_rows_with_rain": 0.20067610262585592
+  },
+  "what_if_refill": [
+    {
+      "day": "2026-11-17",
+      "hour": 8,
+      "k": 10,
+      "stations": 2603,
+      "kept_mean": 6.663460383266865,
+      "kept_p10": 3.447657932723403,
+      "kept_p90": 9.82884170944033,
+      "fastest_drain": [
+        {
+          "name": "YouBike2.0_捷運後山埤站(3號出口)",
+          "district": "南港區",
+          "bikes_now": 1.0,
+          "in_1h_without": 1.0,
+          "in_1h_with": 0.6,
+          "kept": -0.4
+        },
+        {
+          "name": "YouBike2.0_思賢公園(北側)",
+          "district": "新莊區",
+          "bikes_now": 0.0,
+          "in_1h_without": 0.2,
+          "in_1h_with": 0.0,
+          "kept": -0.2
+        },
+        {
+          "name": "YouBike2.0_永安國小(北安路554巷)",
+          "district": "中山區",
+          "bikes_now": 3.0,
+          "in_1h_without": 0.5,
+          "in_1h_with": 0.4,
+          "kept": -0.1
+        },
+        {
+          "name": "YouBike2.0_北投文化公園(北側)",
+          "district": "北投區",
+          "bikes_now": 2.0,
+          "in_1h_without": 1.3,
+          "in_1h_with": 1.2,
+          "kept": -0.1
+        },
+        {
+          "name": "YouBike2.0_捷運南京三民站(4號出口)",
+          "district": "松山區",
+          "bikes_now": 1.0,
+          "in_1h_without": 0.7,
+          "in_1h_with": 0.6,
+          "kept": -0.1
+        }
+      ]
+    },
+    {
+      "day": "2026-11-16",
+      "hour": 18,
+      "k": 10,
+      "stations": 2505,
+      "kept_mean": 6.994086644735798,
+      "kept_p10": 4.241069884942011,
+      "kept_p90": 9.47437578134022,
+      "fastest_drain": [
+        {
+          "name": "YouBike2.0_廣福國小",
+          "district": "土城區",
+          "bikes_now": 8.0,
+          "in_1h_without": 8.3,
+          "in_1h_with": 9.7,
+          "kept": 1.4
+        },
+        {
+          "name": "YouBike2.0_致理科技大學",
+          "district": "板橋區",
+          "bikes_now": 20.0,
+          "in_1h_without": 19.8,
+          "in_1h_with": 21.3,
+          "kept": 1.4
+        },
+        {
+          "name": "YouBike2.0_國慶學成路口",
+          "district": "三峽區",
+          "bikes_now": 0.0,
+          "in_1h_without": 1.9,
+          "in_1h_with": 3.4,
+          "kept": 1.5
+        },
+        {
+          "name": "YouBike2.0_板橋戶政事務所",
+          "district": "板橋區",
+          "bikes_now": 29.0,
+          "in_1h_without": 26.9,
+          "in_1h_with": 28.5,
+          "kept": 1.6
+        },
+        {
+          "name": "YouBike2.0_裕民路55巷",
+          "district": "土城區",
+          "bikes_now": 7.0,
+          "in_1h_without": 8.7,
+          "in_1h_with": 10.4,
+          "kept": 1.7
+        }
+      ]
+    }
+  ]
+}

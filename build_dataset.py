@@ -7,6 +7,7 @@ Writes  out/snapshots.parquet    one row per station per 5-minute slot (clean, l
         out/stations.parquet     one row per station (static info)
         out/weather.parquet      one row per city per 5-minute slot (what we knew then)
         out/model_table.parquet  features + target, ready for train.py
+        out/latest.parquet       features of the newest slot (no target yet), used by app.py
         out/dataset_report.json  counts, gaps, dropped rounds
 
 Time handling
@@ -67,7 +68,8 @@ def failed_rounds():
 
 
 # ---------------------------------------------------------------- snapshots
-def read_snapshots(report):
+def read_snapshots(report, since=None):
+    """since: only read files fetched at or after this UTC datetime (used for quick refreshes)."""
     bad = failed_rounds()
     rows = []          # slot, dist, sno, city, bikes, docks_free, capacity, act, station_ts
     static = {}        # sno -> (city, name, district, lat, lng)   (latest wins)
@@ -75,6 +77,8 @@ def read_snapshots(report):
 
     for path in sorted((RAW / "youbike_taipei").rglob("*.json.gz")):
         stamp = path.name[:20]
+        if since and stamp_to_dt(stamp) < since:
+            continue
         if stamp in bad.get("youbike_taipei", ()):
             dropped.append(path.name)
             continue
@@ -87,6 +91,8 @@ def read_snapshots(report):
 
     for path in sorted((RAW / "youbike_newtaipei").rglob("*.json.gz")):
         stamp = path.name[:20]
+        if since and stamp_to_dt(stamp) < since:
+            continue
         if stamp in bad.get("youbike_newtaipei", ()):   # partial round: some pages missing
             dropped.append(path.name)
             continue
@@ -123,11 +129,13 @@ def read_snapshots(report):
 
 
 # ------------------------------------------------------------------ weather
-def read_weather(slots):
+def read_weather(slots, since=None):
     """For every slot and city: the newest weather download made at or before the slot."""
     cur, fc = [], []
     for source, city in (("weather_taipei", "taipei"), ("weather_newtaipei", "newtaipei")):
         for path in sorted((RAW / source).rglob("*.json.gz")):
+            if since and stamp_to_dt(path.name[:20]) < since:
+                continue
             fetched = stamp_to_dt(path.name[:20]).replace(tzinfo=None)
             w = load(path)
             c, h = w["current"], w["hourly"]
@@ -237,9 +245,30 @@ def build_model_table(snap, stations, weather):
     for c in wcols:
         df[c] = df[c].astype("float32")
 
+    # newest slot: features are complete, the answer does not exist yet -> what the app predicts
+    latest = df[(df.slot_utc == grid[-1]) & df.bikes_now.notna()].reset_index(drop=True)
     # keep rows where we know both "now" and the answer one hour later
     df = df[df.bikes_now.notna() & df.y_bikes.notna()].reset_index(drop=True)
-    return df, grid
+    return df, latest
+
+
+def build_latest(dest, hours=26):
+    """Quick refresh for the app: features of the newest slot, from the last `hours` of raw files only.
+
+    26 hours is enough because the oldest thing a feature looks at is "yesterday at this time".
+    Writes dest/latest.parquet and dest/history_live.parquet. Takes about half a minute.
+    """
+    newest = max(p.name[:20] for p in (RAW / "youbike_taipei").rglob("*.json.gz"))
+    since = stamp_to_dt(newest) - timedelta(hours=hours)
+    snap, stations = read_snapshots({}, since=since)
+    grid = pd.date_range(snap.slot_utc.min(), snap.slot_utc.max(), freq="5min")
+    weather = read_weather(grid.to_series().reset_index(drop=True), since=since - timedelta(hours=7))
+    _, latest = build_model_table(snap, stations, weather)
+    dest = Path(dest)
+    dest.mkdir(exist_ok=True)
+    latest.to_parquet(dest / "latest.parquet", index=False)
+    snap[["slot_local", "sno", "bikes", "act"]].to_parquet(dest / "history_live.parquet", index=False)
+    return latest.slot_local.max()
 
 
 def main():
@@ -250,7 +279,8 @@ def main():
     grid_all = pd.date_range(slots.iloc[0], slots.iloc[-1], freq="5min")
     missing = grid_all.difference(pd.DatetimeIndex(slots))
     weather = read_weather(grid_all.to_series().reset_index(drop=True))
-    table, grid = build_model_table(snap, stations, weather)
+    table, latest = build_model_table(snap, stations, weather)
+    latest.to_parquet(OUT / "latest.parquet", index=False)
 
     snap.to_parquet(OUT / "snapshots.parquet", index=False)
     stations.to_parquet(OUT / "stations.parquet", index=False)

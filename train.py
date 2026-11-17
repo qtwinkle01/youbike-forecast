@@ -17,6 +17,10 @@ Baselines
   now  : "one hour from now it will be the same as now"
   yday : "it will be the same as yesterday at that time"
 The model predicts the CHANGE over the next hour and adds it to the current count.
+
+Outputs
+  out/model.txt        trained on train only  -> the honest scores in out/metrics.json
+  out/model_full.txt   same settings, refit on every row -> used by explain.py and the app
 """
 import argparse
 import json
@@ -138,6 +142,12 @@ def main():
     print(gain.head(12).to_string())
 
     model.save_model(str(OUT / "model.txt"), num_iteration=model.best_iteration)
+
+    # The scores above come from the split model. For the app and the explanations we
+    # refit on ALL rows with the same number of trees, so the newest days are not wasted.
+    full = lgb.train(PARAMS, lgb.Dataset(*xy(df)), num_boost_round=model.best_iteration)
+    full.save_model(str(OUT / "model_full.txt"))
+    print(f"\nrefit on all {len(df):,} rows -> out/model_full.txt")
     out = test[["slot_utc", "slot_local", "sno", "bikes_now", "y_bikes", "y_docks_free"]].copy()
     out["pred"] = pred
     out.to_parquet(OUT / "test_predictions.parquet", index=False)

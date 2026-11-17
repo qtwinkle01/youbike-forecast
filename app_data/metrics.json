@@ -1,0 +1,147 @@
+{
+  "test_hours": 24,
+  "periods_local": {
+    "train": [
+      "2026-11-13 23:40:00",
+      "2026-11-15 23:00:00"
+    ],
+    "valid": [
+      "2026-11-16 00:05:00",
+      "2026-11-16 08:00:00"
+    ],
+    "test": [
+      "2026-11-16 09:05:00",
+      "2026-11-17 09:00:00"
+    ]
+  },
+  "rows": {
+    "train": 1803204,
+    "valid": 326111,
+    "test": 978054
+  },
+  "trees": 176,
+  "features": [
+    "bikes_now",
+    "docks_free_now",
+    "fill_now",
+    "capacity",
+    "delta_15m",
+    "delta_60m",
+    "bikes_yday_now",
+    "bikes_yday_target",
+    "yday_delta_60m",
+    "hour",
+    "dow",
+    "is_weekend",
+    "cur_temp",
+    "cur_precip",
+    "cur_humidity",
+    "cur_wind",
+    "fc_temp",
+    "fc_precip",
+    "fc_precip_prob",
+    "nbr_bikes_mean",
+    "nbr_fill_mean",
+    "nbr_delta_60m",
+    "nbr_km_mean",
+    "lat",
+    "lng",
+    "is_taipei"
+  ],
+  "metrics": {
+    "baseline_now": {
+      "rows": 978054,
+      "mae": 2.855807552548223,
+      "rmse": 5.070328070660379,
+      "same_rows_as_yday": {
+        "rows": 977716,
+        "mae": 2.855876348551113,
+        "rmse": 5.070626344848719
+      },
+      "empty": {
+        "events": 66235,
+        "flagged": 66323,
+        "precision": 0.3966949625318517,
+        "recall": 0.39722201253113915
+      },
+      "full": {
+        "events": 18382,
+        "flagged": 18438,
+        "precision": 0.4488556242542575,
+        "recall": 0.45022304428245025
+      }
+    },
+    "baseline_yday": {
+      "rows": 977716,
+      "mae": 5.9095851965192345,
+      "rmse": 8.844745137465933,
+      "same_rows_as_yday": {
+        "rows": 977716,
+        "mae": 5.9095851965192345,
+        "rmse": 8.844745137465933
+      },
+      "empty": {
+        "events": 66224,
+        "flagged": 49669,
+        "precision": 0.3240250458032173,
+        "recall": 0.24302367721671903
+      },
+      "full": {
+        "events": 18382,
+        "flagged": 23599,
+        "precision": 0.28035086232467477,
+        "recall": 0.3599173104123599
+      }
+    },
+    "lightgbm": {
+      "rows": 978054,
+      "mae": 2.6731993940057066,
+      "rmse": 4.644931706841381,
+      "same_rows_as_yday": {
+        "rows": 977716,
+        "mae": 2.673247193113107,
+        "rmse": 4.645178922906878
+      },
+      "empty": {
+        "events": 66235,
+        "flagged": 12130,
+        "precision": 0.782522671063479,
+        "recall": 0.14330791877406204
+      },
+      "full": {
+        "events": 18382,
+        "flagged": 6661,
+        "precision": 0.8495721363158685,
+        "recall": 0.30785551082580787
+      }
+    }
+  },
+  "importance_gain": {
+    "fill_now": 0.1094,
+    "hour": 0.1074,
+    "bikes_now": 0.09,
+    "nbr_km_mean": 0.0647,
+    "docks_free_now": 0.0597,
+    "nbr_delta_60m": 0.0581,
+    "fc_temp": 0.0514,
+    "bikes_yday_target": 0.0493,
+    "lng": 0.0446,
+    "cur_temp": 0.044,
+    "delta_60m": 0.0436,
+    "yday_delta_60m": 0.0429,
+    "nbr_fill_mean": 0.0337,
+    "cur_humidity": 0.0331,
+    "lat": 0.0311,
+    "nbr_bikes_mean": 0.0259,
+    "bikes_yday_now": 0.0226,
+    "cur_wind": 0.0204,
+    "fc_precip_prob": 0.0197,
+    "capacity": 0.0163,
+    "delta_15m": 0.0142,
+    "fc_precip": 0.0111,
+    "cur_precip": 0.0039,
+    "is_taipei": 0.0025,
+    "dow": 0.0004,
+    "is_weekend": 0.0
+  }
+}

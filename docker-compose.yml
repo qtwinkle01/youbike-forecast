@@ -24,5 +24,16 @@ services:
     working_dir: /work
     volumes:
       - .:/work
+
+  # Streamlit app:  docker compose --profile app up app   -> http://localhost:8502
+  app:
+    profiles: ["app"]
+    build:
+      context: .
+      dockerfile: Dockerfile.ml
+    working_dir: /work
+    volumes:
+      - .:/work
     ports:
-      - "8501:8501"
+      - "8502:8501"
+    command: streamlit run app.py --server.address 0.0.0.0 --server.port 8501 --server.headless true --browser.gatherUsageStats false --server.fileWatcherType poll
