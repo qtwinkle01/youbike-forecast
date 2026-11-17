@@ -2426,3 +2426,93 @@
 {"ts": "2026-11-17T06:05:00.857591+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716848, "pages": 2, "ok": true, "elapsed_s": 2.49}
 {"ts": "2026-11-17T06:04:52.120132+00:00", "source": "weather_taipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.4}
 {"ts": "2026-11-17T06:05:16.521787+00:00", "source": "weather_newtaipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.37}
+{"ts": "2026-11-17T06:09:59.983564+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955958, "ok": true, "elapsed_s": 2.14}
+{"ts": "2026-11-17T06:10:02.144144+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716847, "pages": 2, "ok": true, "elapsed_s": 3.36}
+{"ts": "2026-11-17T06:14:59.978980+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955953, "ok": true, "elapsed_s": 0.91}
+{"ts": "2026-11-17T06:15:00.894913+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716835, "pages": 2, "ok": true, "elapsed_s": 0.54}
+{"ts": "2026-11-17T06:15:40.850137+00:00", "source": "weather_taipei", "bytes": 2632, "ok": true, "elapsed_s": 0.52}
+{"ts": "2026-11-17T06:15:41.366567+00:00", "source": "weather_newtaipei", "bytes": 2632, "ok": true, "elapsed_s": 0.18}
+{"ts": "2026-11-17T06:19:59.979861+00:00", "source": "youbike_taipei", "rows": 1826, "bytes": 956525, "ok": true, "elapsed_s": 0.87}
+{"ts": "2026-11-17T06:20:00.857368+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716850, "pages": 2, "ok": true, "elapsed_s": 3.51}
+{"ts": "2026-11-17T06:24:59.979961+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955944, "ok": true, "elapsed_s": 0.89}
+{"ts": "2026-11-17T06:25:00.874339+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716843, "pages": 2, "ok": true, "elapsed_s": 2.63}
+{"ts": "2026-11-17T06:29:59.980484+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955929, "ok": true, "elapsed_s": 0.89}
+{"ts": "2026-11-17T06:30:00.877853+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716847, "pages": 2, "ok": true, "elapsed_s": 0.97}
+{"ts": "2026-11-17T06:34:59.980156+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955937, "ok": true, "elapsed_s": 0.9}
+{"ts": "2026-11-17T06:35:00.878029+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716848, "pages": 2, "ok": true, "elapsed_s": 1.19}
+{"ts": "2026-11-17T06:39:59.979290+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955937, "ok": true, "elapsed_s": 0.87}
+{"ts": "2026-11-17T06:40:00.848891+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716851, "pages": 2, "ok": true, "elapsed_s": 2.71}
+{"ts": "2026-11-17T06:44:59.979853+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955951, "ok": true, "elapsed_s": 0.87}
+{"ts": "2026-11-17T06:45:00.847268+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716835, "pages": 2, "ok": true, "elapsed_s": 2.23}
+{"ts": "2026-11-17T06:49:59.979992+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955950, "ok": true, "elapsed_s": 0.91}
+{"ts": "2026-11-17T06:50:00.894510+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716855, "pages": 2, "ok": true, "elapsed_s": 0.62}
+{"ts": "2026-11-17T06:54:59.978537+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955945, "ok": true, "elapsed_s": 1.11}
+{"ts": "2026-11-17T06:55:01.094812+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716860, "pages": 2, "ok": true, "elapsed_s": 1.67}
+{"ts": "2026-11-17T06:59:59.974201+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955951, "ok": true, "elapsed_s": 0.89}
+{"ts": "2026-11-17T07:00:00.866363+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716846, "pages": 2, "ok": true, "elapsed_s": 2.92}
+{"ts": "2026-11-17T06:59:59.813181+00:00", "source": "weather_taipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.37}
+{"ts": "2026-11-17T07:00:24.187781+00:00", "source": "weather_newtaipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.36}
+{"ts": "2026-11-17T07:04:59.975054+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955952, "ok": true, "elapsed_s": 0.82}
+{"ts": "2026-11-17T07:05:00.799069+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716841, "pages": 2, "ok": true, "elapsed_s": 0.75}
+{"ts": "2026-11-17T07:09:59.976785+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955948, "ok": true, "elapsed_s": 0.91}
+{"ts": "2026-11-17T07:10:00.889438+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716843, "pages": 2, "ok": true, "elapsed_s": 2.27}
+{"ts": "2026-11-17T07:10:48.501911+00:00", "source": "weather_taipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.36}
+{"ts": "2026-11-17T07:11:12.861611+00:00", "source": "weather_newtaipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.37}
+{"ts": "2026-11-17T07:14:59.977478+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955963, "ok": true, "elapsed_s": 0.84}
+{"ts": "2026-11-17T07:15:00.821969+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716848, "pages": 2, "ok": true, "elapsed_s": 2.99}
+{"ts": "2026-11-17T07:19:59.977981+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955957, "ok": true, "elapsed_s": 0.9}
+{"ts": "2026-11-17T07:20:00.879382+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716845, "pages": 2, "ok": true, "elapsed_s": 3.43}
+{"ts": "2026-11-17T07:21:37.187706+00:00", "source": "weather_taipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.36}
+{"ts": "2026-11-17T07:22:01.552239+00:00", "source": "weather_newtaipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.35}
+{"ts": "2026-11-17T07:24:59.979264+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955951, "ok": true, "elapsed_s": 0.87}
+{"ts": "2026-11-17T07:25:00.847528+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716832, "pages": 2, "ok": true, "elapsed_s": 0.63}
+{"ts": "2026-11-17T07:29:59.978849+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955971, "ok": true, "elapsed_s": 0.91}
+{"ts": "2026-11-17T07:30:00.892278+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716832, "pages": 2, "ok": true, "elapsed_s": 0.72}
+{"ts": "2026-11-17T07:32:25.861991+00:00", "source": "weather_taipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.41}
+{"ts": "2026-11-17T07:32:50.273479+00:00", "source": "weather_newtaipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.37}
+{"ts": "2026-11-17T07:34:59.979392+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955980, "ok": true, "elapsed_s": 0.91}
+{"ts": "2026-11-17T07:35:00.889011+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716845, "pages": 2, "ok": true, "elapsed_s": 0.72}
+{"ts": "2026-11-17T07:39:59.980295+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955979, "ok": true, "elapsed_s": 0.88}
+{"ts": "2026-11-17T07:40:00.860559+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716854, "pages": 2, "ok": true, "elapsed_s": 2.38}
+{"ts": "2026-11-17T07:43:14.607860+00:00", "source": "weather_taipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.36}
+{"ts": "2026-11-17T07:43:38.970051+00:00", "source": "weather_newtaipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.36}
+{"ts": "2026-11-17T07:44:59.980003+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955987, "ok": true, "elapsed_s": 0.91}
+{"ts": "2026-11-17T07:45:00.893882+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716856, "pages": 2, "ok": true, "elapsed_s": 0.77}
+{"ts": "2026-11-17T07:49:59.981237+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955973, "ok": true, "elapsed_s": 0.93}
+{"ts": "2026-11-17T07:50:00.917718+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716860, "pages": 2, "ok": true, "elapsed_s": 0.73}
+{"ts": "2026-11-17T07:54:03.295098+00:00", "source": "weather_taipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.37}
+{"ts": "2026-11-17T07:54:27.669808+00:00", "source": "weather_newtaipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.38}
+{"ts": "2026-11-17T07:54:59.981096+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955973, "ok": true, "elapsed_s": 0.88}
+{"ts": "2026-11-17T07:55:00.866141+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716869, "pages": 2, "ok": true, "elapsed_s": 0.62}
+{"ts": "2026-11-17T07:59:59.981605+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955977, "ok": true, "elapsed_s": 0.9}
+{"ts": "2026-11-17T08:00:00.889269+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716854, "pages": 2, "ok": true, "elapsed_s": 0.54}
+{"ts": "2026-11-17T08:04:59.981427+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955978, "ok": true, "elapsed_s": 0.82}
+{"ts": "2026-11-17T08:05:00.802554+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716863, "pages": 2, "ok": true, "elapsed_s": 2.21}
+{"ts": "2026-11-17T08:04:52.010938+00:00", "source": "weather_taipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.4}
+{"ts": "2026-11-17T08:05:16.411120+00:00", "source": "weather_newtaipei", "bytes": 2633, "ok": true, "elapsed_s": 14.7}
+{"ts": "2026-11-17T08:09:59.981217+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955990, "ok": true, "elapsed_s": 0.93}
+{"ts": "2026-11-17T08:10:00.911499+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716850, "pages": 2, "ok": true, "elapsed_s": 1.46}
+{"ts": "2026-11-17T08:14:59.981388+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955985, "ok": true, "elapsed_s": 0.9}
+{"ts": "2026-11-17T08:15:00.887375+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716826, "pages": 2, "ok": true, "elapsed_s": 0.64}
+{"ts": "2026-11-17T08:15:31.078316+00:00", "source": "weather_taipei", "bytes": 2628, "ok": true, "elapsed_s": 0.53}
+{"ts": "2026-11-17T08:15:31.608577+00:00", "source": "weather_newtaipei", "bytes": 2633, "ok": true, "elapsed_s": 0.18}
+{"ts": "2026-11-17T08:19:59.981456+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955997, "ok": true, "elapsed_s": 0.89}
+{"ts": "2026-11-17T08:20:00.871756+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716836, "pages": 2, "ok": true, "elapsed_s": 1.66}
+{"ts": "2026-11-17T08:24:59.981606+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955976, "ok": true, "elapsed_s": 0.92}
+{"ts": "2026-11-17T08:25:00.901907+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716844, "pages": 2, "ok": true, "elapsed_s": 0.71}
+{"ts": "2026-11-17T08:29:59.982011+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955966, "ok": true, "elapsed_s": 0.9}
+{"ts": "2026-11-17T08:30:00.883592+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716857, "pages": 2, "ok": true, "elapsed_s": 2.68}
+{"ts": "2026-11-17T08:34:59.982592+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955968, "ok": true, "elapsed_s": 0.92}
+{"ts": "2026-11-17T08:35:00.907734+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716868, "pages": 2, "ok": true, "elapsed_s": 0.85}
+{"ts": "2026-11-17T08:39:59.981320+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955970, "ok": true, "elapsed_s": 0.94}
+{"ts": "2026-11-17T08:40:00.922204+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716871, "pages": 2, "ok": true, "elapsed_s": 2.39}
+{"ts": "2026-11-17T08:44:59.981375+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955970, "ok": true, "elapsed_s": 0.83}
+{"ts": "2026-11-17T08:45:00.812983+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716890, "pages": 2, "ok": true, "elapsed_s": 0.78}
+{"ts": "2026-11-17T08:49:59.982357+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955959, "ok": true, "elapsed_s": 0.93}
+{"ts": "2026-11-17T08:50:00.917451+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716916, "pages": 2, "ok": true, "elapsed_s": 0.58}
+{"ts": "2026-11-17T08:54:59.982044+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955974, "ok": true, "elapsed_s": 0.91}
+{"ts": "2026-11-17T08:55:00.894816+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716939, "pages": 2, "ok": true, "elapsed_s": 0.8}
+{"ts": "2026-11-17T08:59:59.981318+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955950, "ok": true, "elapsed_s": 0.88}
+{"ts": "2026-11-17T09:00:00.865498+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 716942, "pages": 2, "ok": true, "elapsed_s": 0.7}
+{"ts": "2026-11-17T08:59:59.835385+00:00", "source": "weather_taipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.37}
+{"ts": "2026-11-17T09:00:24.209431+00:00", "source": "weather_newtaipei", "ok": false, "error": "ReadTimeout: HTTPSConnectionPool(host='api.open-meteo.com', port=443): Read timed out. (read timeout=10)", "elapsed_s": 24.4}
