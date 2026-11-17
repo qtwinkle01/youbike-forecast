@@ -18,5 +18,13 @@
     data/fetch_log.jsonl                                          # fetch history
     data/heartbeat                                                # touched on each successful round
 
+## Dataset and model (reproducible from data/raw)
+    docker compose build ml
+    docker compose run --rm ml python build_dataset.py   # raw -> out/*.parquet (+ dataset_report.json)
+    docker compose run --rm ml python train.py           # baselines vs LightGBM, test = last 24 h
+
+`out/` is derived and not committed. Time rules and the leakage rule are documented at the top of
+`build_dataset.py`; the train / valid / test split is documented at the top of `train.py`.
+
 Sources: youbike_taipei, youbike_newtaipei (one file per page), weather_taipei, weather_newtaipei.
 Back up `data/` regularly (e.g. rsync to another machine).

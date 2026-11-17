@@ -21,3 +21,6 @@ HANDOFF.md
 .claude/
 .vscode/
 .idea/
+
+# derived outputs (rebuild from data/raw)
+out/

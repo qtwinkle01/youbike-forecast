@@ -13,3 +13,16 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+  # Dataset / model / app environment. Not started by `docker compose up`;
+  # use e.g.  docker compose run --rm ml python build_dataset.py
+  ml:
+    profiles: ["ml"]
+    build:
+      context: .
+      dockerfile: Dockerfile.ml
+    working_dir: /work
+    volumes:
+      - .:/work
+    ports:
+      - "8501:8501"
