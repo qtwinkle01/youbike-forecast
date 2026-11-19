@@ -3,6 +3,7 @@
 Predicts how many bikes each YouBike station in Taipei and New Taipei will have one hour from now,
 and explains what drives the forecast.
 
+- **Live app:** https://youbike-forecast-mary.streamlit.app/ (English / 中文; on the free host it may need about a minute to wake up)
 - **Report (results, drivers, limits, next steps):** [docs/REPORT.md](docs/REPORT.md) · [中文版](docs/REPORT.zh-TW.md)
 - **Dataset documentation:** [docs/DATASET.md](docs/DATASET.md)
 

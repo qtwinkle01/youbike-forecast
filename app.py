@@ -40,6 +40,8 @@ TEXT = {
     "updating": ("Reading the last 26 hours of raw files (about a minute and a half)…", "正在讀取最近 26 小時的原始檔（約一分半鐘）…"),
     "stale": ("This snapshot is **{h:.1f} hours old**. Live forecasts need the collector running; then press \"Update to the newest data\". Or use Replay to see forecasts against real outcomes.",
               "這份快照已經是 **{h:.1f} 小時前**的資料。即時預測需要收集程式持續執行，再按「更新到最新資料」。也可以切到回放模式，對照預測與實際結果。"),
+    "ended": ("**Data collection has ended.** This is the last snapshot ({asof}), so the forecast is for one hour after it. Use **Replay** to see forecasts next to what really happened.",
+              "**資料收集已結束。** 這是最後一筆快照（{asof}），預測的是它的一小時後。切到**回放**可以看預測與實際結果的對照。"),
     "station_hdr": ("Station", "站點"),
     "city": ("City", "城市"),
     "taipei": ("Taipei", "台北"),
@@ -275,8 +277,10 @@ if replay:
     st.info(t("replay_banner"))
 else:
     age = pd.Timestamp.now(tz="Asia/Taipei").tz_localize(None) - as_of
-    if age > pd.Timedelta(minutes=15):
+    if age > pd.Timedelta(minutes=15) and collector_running():
         st.warning(t("stale", h=age.total_seconds() / 3600))
+    elif age > pd.Timedelta(minutes=15):
+        st.info(t("ended", asof=when(as_of)))
 
 # ---------------------------------------------------------- sidebar: station
 with st.sidebar:

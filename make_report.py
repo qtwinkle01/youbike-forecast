@@ -69,7 +69,8 @@ def weekend_count(start, end):
     return int((days.dayofweek >= 5).sum())
 
 
-DAYTYPE_MATTERS = 0.05     # share of stations moving 1+ bike above which the weekday label "matters"
+APP_URL = "https://youbike-forecast-mary.streamlit.app/"
+DAYTYPE_MATTERS = 0.05    # share of stations moving 1+ bike above which the weekday label "matters"
 
 
 def peak_hours(by_hour):
@@ -289,6 +290,8 @@ The first scenario is the operational one: it shows where added bikes stay and w
 
 ### The app
 
+**Try it:** {app_url} (the free host may need about a minute to wake up)
+
 ![App in replay mode](img/app_replay.jpg)
 
 The app has two views. **Latest** forecasts from the newest snapshot. **Replay** lets you pick any moment of the held-out test day and puts the forecast (orange, dashed) next to what really happened (grey), using the model that never saw that day. The screenshot (from an earlier run, so a different test day) also shows a rebalancing jump at about 04:30 that no public data announces.
@@ -437,6 +440,8 @@ flowchart LR
 
 ### App
 
+**線上試用：** {app_url}（免費主機閒置後需要約一分鐘喚醒）
+
 ![回放模式的 App](img/app_replay.jpg)
 
 App 有兩種檢視。**最新**：用最新一筆快照做預測。**回放**：可選測試日的任一時間點，把預測（橘色虛線）和實際結果（灰線）並排，使用的是沒看過那一天的模型。截圖（來自較早的一次執行，所以是另一個測試日）裡也看得到凌晨 4:30 左右的一次調度跳升，這在公開資料中沒有任何預告。
@@ -477,7 +482,7 @@ docker compose --profile app up app                    # http://localhost:8502
 
 def main():
     DOCS.mkdir(exist_ok=True)
-    v = values()
+    v = values() | {"app_url": APP_URL}
     (DOCS / "REPORT.md").write_text(EN.format(**v), encoding="utf-8", newline="\n")
     (DOCS / "REPORT.zh-TW.md").write_text(ZH.format(**v), encoding="utf-8", newline="\n")
     print("wrote docs/REPORT.md, docs/REPORT.zh-TW.md, docs/img/mae_by_hour.png, docs/img/drivers.png")

@@ -44,8 +44,8 @@ flowchart LR
 | Clean snapshot rows | 5,745,858 (13,785 duplicate rows removed) |
 | Rows with features and a known answer | 5,577,528 |
 | 5-minute slots expected / missing | 1,694 / 26 (98.5% covered) |
-| Bike fetches succeeded / failed | 3,359 / 53 |
-| Weather fetches succeeded / failed | 257 / 375 |
+| Bike fetches succeeded / failed | 3,421 / 53 |
+| Weather fetches succeeded / failed | 263 / 375 |
 
 - **Gaps.** 2026-11-14 11:40:00 -> 2026-11-14 13:45:00. 52 of the 53 bike fetch failures fall in this window: DNS failures on the collecting machine, not the APIs. The collector logged them and resumed by itself. The other one was isolated and left no gap in the data.
 - **Weather failures look worse than they are.** After a failure the collector retries every 10 minutes and logs each try. Every successful download carries a 48-hour forecast, so only 6 slots have no weather at all.
@@ -114,6 +114,8 @@ Each forecast is split into contributions with SHAP values. The table is the ave
 The first scenario is the operational one: it shows where added bikes stay and where they are gone within the hour.
 
 ### The app
+
+**Try it:** https://youbike-forecast-mary.streamlit.app/ (the free host may need about a minute to wake up)
 
 ![App in replay mode](img/app_replay.jpg)
 
