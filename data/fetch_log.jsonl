@@ -4094,3 +4094,19 @@
 {"ts": "2026-11-19T15:20:01.415832+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 717014, "pages": 2, "ok": true, "elapsed_s": 1.97}
 {"ts": "2026-11-19T15:24:59.980806+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955880, "ok": true, "elapsed_s": 1.47}
 {"ts": "2026-11-19T15:25:01.455298+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 717019, "pages": 2, "ok": true, "elapsed_s": 0.81}
+{"ts": "2026-11-19T15:29:59.981706+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955875, "ok": true, "elapsed_s": 0.84}
+{"ts": "2026-11-19T15:30:00.820561+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 717018, "pages": 2, "ok": true, "elapsed_s": 2.91}
+{"ts": "2026-11-19T15:34:59.981317+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955879, "ok": true, "elapsed_s": 1.45}
+{"ts": "2026-11-19T15:35:01.433750+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 717024, "pages": 2, "ok": true, "elapsed_s": 0.64}
+{"ts": "2026-11-19T15:39:59.981887+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955882, "ok": true, "elapsed_s": 0.98}
+{"ts": "2026-11-19T15:40:00.974092+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 717044, "pages": 2, "ok": true, "elapsed_s": 2.41}
+{"ts": "2026-11-19T15:44:59.979203+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955882, "ok": true, "elapsed_s": 1.0}
+{"ts": "2026-11-19T15:45:00.981183+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 717046, "pages": 2, "ok": true, "elapsed_s": 1.08}
+{"ts": "2026-11-19T15:49:59.978542+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955871, "ok": true, "elapsed_s": 1.0}
+{"ts": "2026-11-19T15:50:00.998240+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 717047, "pages": 2, "ok": true, "elapsed_s": 1.02}
+{"ts": "2026-11-19T15:54:59.976222+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955862, "ok": true, "elapsed_s": 0.98}
+{"ts": "2026-11-19T15:55:00.959296+00:00", "source": "youbike_newtaipei", "rows": 1622, "bytes": 717034, "pages": 2, "ok": true, "elapsed_s": 1.85}
+{"ts": "2026-11-19T15:59:59.975667+00:00", "source": "youbike_taipei", "rows": 1825, "bytes": 955861, "ok": true, "elapsed_s": 0.92}
+{"ts": "2026-11-19T15:59:59.756680+00:00", "source": "weather_taipei", "bytes": 2616, "ok": true, "elapsed_s": 1.16}
+{"ts": "2026-11-19T16:00:00.925351+00:00", "source": "weather_newtaipei", "bytes": 2622, "ok": true, "elapsed_s": 0.33}
+{"ts": "2026-11-19T16:00:00.906069+00:00", "source": "youbike_newtaipei", "rows": 1627, "bytes": 719153, "pages": 2, "ok": true, "elapsed_s": 3.46}
