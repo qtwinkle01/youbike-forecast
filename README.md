@@ -19,6 +19,8 @@ and explains what drives the forecast.
 | `make_report.py` | Regenerates the report and its charts from the latest run |
 | `check_outputs.py` | Re-verifies every promise in the report against the data (5 days, split, no leakage, beats baseline, report current) |
 | `check_app.py` | Smoke test: the app runs in both languages and both views |
+| `requirements.txt`, `packages.txt` | What the app needs (used by Streamlit Community Cloud) |
+| `requirements-collector.txt`, `requirements-ml.txt` | What the collector image and the pipeline image install |
 | `.githooks/pre-commit` | Blocks secrets, private notes and files over 50 MB |
 | `backup.ps1` | One-command backup of `data/` to this repository |
 | `data/raw/`, `data/fetch_log.jsonl` | The collected history (committed, so everything can be reproduced) |
