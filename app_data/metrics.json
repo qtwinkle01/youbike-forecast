@@ -3,23 +3,23 @@
   "periods_local": {
     "train": [
       "2026-11-13 23:40:00",
-      "2026-11-15 23:00:00"
+      "2026-11-18 00:55:00"
     ],
     "valid": [
-      "2026-11-16 00:05:00",
-      "2026-11-16 08:00:00"
+      "2026-11-18 02:00:00",
+      "2026-11-18 18:45:00"
     ],
     "test": [
-      "2026-11-16 09:05:00",
-      "2026-11-17 09:00:00"
+      "2026-11-18 19:50:00",
+      "2026-11-19 19:45:00"
     ]
   },
   "rows": {
-    "train": 1803204,
-    "valid": 326111,
-    "test": 978054
+    "train": 3837692,
+    "valid": 686045,
+    "test": 972287
   },
-  "trees": 176,
+  "trees": 751,
   "features": [
     "bikes_now",
     "docks_free_now",
@@ -50,98 +50,98 @@
   ],
   "metrics": {
     "baseline_now": {
-      "rows": 978054,
-      "mae": 2.855807552548223,
-      "rmse": 5.070328070660379,
+      "rows": 972287,
+      "mae": 2.7535388213562455,
+      "rmse": 4.9324262623440935,
       "same_rows_as_yday": {
-        "rows": 977716,
-        "mae": 2.855876348551113,
-        "rmse": 5.070626344848719
+        "rows": 972173,
+        "mae": 2.753319625210739,
+        "rmse": 4.932015883161049
       },
       "empty": {
-        "events": 66235,
-        "flagged": 66323,
-        "precision": 0.3966949625318517,
-        "recall": 0.39722201253113915
+        "events": 57125,
+        "flagged": 56853,
+        "precision": 0.39044553497616663,
+        "recall": 0.3885864332603939
       },
       "full": {
-        "events": 18382,
-        "flagged": 18438,
-        "precision": 0.4488556242542575,
-        "recall": 0.45022304428245025
+        "events": 19000,
+        "flagged": 18890,
+        "precision": 0.4648491265219693,
+        "recall": 0.4621578947368421
       }
     },
     "baseline_yday": {
-      "rows": 977716,
-      "mae": 5.9095851965192345,
-      "rmse": 8.844745137465933,
+      "rows": 972173,
+      "mae": 4.582642184055718,
+      "rmse": 6.659767882365643,
       "same_rows_as_yday": {
-        "rows": 977716,
-        "mae": 5.9095851965192345,
-        "rmse": 8.844745137465933
+        "rows": 972173,
+        "mae": 4.582642184055718,
+        "rmse": 6.659767882365643
       },
       "empty": {
-        "events": 66224,
-        "flagged": 49669,
-        "precision": 0.3240250458032173,
-        "recall": 0.24302367721671903
+        "events": 57125,
+        "flagged": 63848,
+        "precision": 0.3121006139581506,
+        "recall": 0.34883150984682715
       },
       "full": {
-        "events": 18382,
-        "flagged": 23599,
-        "precision": 0.28035086232467477,
-        "recall": 0.3599173104123599
+        "events": 19000,
+        "flagged": 21187,
+        "precision": 0.3456364751970548,
+        "recall": 0.38542105263157894
       }
     },
     "lightgbm": {
-      "rows": 978054,
-      "mae": 2.6731993940057066,
-      "rmse": 4.644931706841381,
+      "rows": 972287,
+      "mae": 2.4336289444026615,
+      "rmse": 4.027787320309409,
       "same_rows_as_yday": {
-        "rows": 977716,
-        "mae": 2.673247193113107,
-        "rmse": 4.645178922906878
+        "rows": 972173,
+        "mae": 2.4334042115030456,
+        "rmse": 4.027272693537136
       },
       "empty": {
-        "events": 66235,
-        "flagged": 12130,
-        "precision": 0.782522671063479,
-        "recall": 0.14330791877406204
+        "events": 57125,
+        "flagged": 11667,
+        "precision": 0.7067798062912488,
+        "recall": 0.14435010940919038
       },
       "full": {
-        "events": 18382,
-        "flagged": 6661,
-        "precision": 0.8495721363158685,
-        "recall": 0.30785551082580787
+        "events": 19000,
+        "flagged": 7502,
+        "precision": 0.8249800053319115,
+        "recall": 0.32573684210526316
       }
     }
   },
   "importance_gain": {
-    "fill_now": 0.1094,
-    "hour": 0.1074,
-    "bikes_now": 0.09,
-    "nbr_km_mean": 0.0647,
-    "docks_free_now": 0.0597,
-    "nbr_delta_60m": 0.0581,
-    "fc_temp": 0.0514,
-    "bikes_yday_target": 0.0493,
-    "lng": 0.0446,
-    "cur_temp": 0.044,
-    "delta_60m": 0.0436,
-    "yday_delta_60m": 0.0429,
-    "nbr_fill_mean": 0.0337,
-    "cur_humidity": 0.0331,
-    "lat": 0.0311,
-    "nbr_bikes_mean": 0.0259,
-    "bikes_yday_now": 0.0226,
-    "cur_wind": 0.0204,
-    "fc_precip_prob": 0.0197,
-    "capacity": 0.0163,
-    "delta_15m": 0.0142,
-    "fc_precip": 0.0111,
-    "cur_precip": 0.0039,
-    "is_taipei": 0.0025,
-    "dow": 0.0004,
-    "is_weekend": 0.0
+    "hour": 0.1214,
+    "fill_now": 0.0944,
+    "bikes_now": 0.086,
+    "yday_delta_60m": 0.0738,
+    "bikes_yday_target": 0.054,
+    "nbr_km_mean": 0.0504,
+    "docks_free_now": 0.0481,
+    "nbr_delta_60m": 0.0453,
+    "cur_temp": 0.0434,
+    "delta_60m": 0.0402,
+    "lat": 0.0402,
+    "lng": 0.0363,
+    "fc_temp": 0.0338,
+    "nbr_fill_mean": 0.0331,
+    "fc_precip_prob": 0.0308,
+    "nbr_bikes_mean": 0.0289,
+    "bikes_yday_now": 0.0264,
+    "cur_humidity": 0.024,
+    "cur_wind": 0.022,
+    "delta_15m": 0.0213,
+    "capacity": 0.0188,
+    "dow": 0.0098,
+    "fc_precip": 0.0098,
+    "is_taipei": 0.0045,
+    "cur_precip": 0.0028,
+    "is_weekend": 0.0006
   }
 }

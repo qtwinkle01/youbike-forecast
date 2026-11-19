@@ -17,6 +17,9 @@ and explains what drives the forecast.
 | `app.py` | Streamlit app, English / 中文 |
 | `export_app_data.py` | Packs what the app needs into `app_data/` (committed, so the app runs without the pipeline) |
 | `make_report.py` | Regenerates the report and its charts from the latest run |
+| `check_outputs.py` | Re-verifies every promise in the report against the data (5 days, split, no leakage, beats baseline, report current) |
+| `check_app.py` | Smoke test: the app runs in both languages and both views |
+| `.githooks/pre-commit` | Blocks secrets, private notes and files over 50 MB |
 | `backup.ps1` | One-command backup of `data/` to this repository |
 | `data/raw/`, `data/fetch_log.jsonl` | The collected history (committed, so everything can be reproduced) |
 
@@ -37,6 +40,8 @@ Requires Docker. Nothing else needs to be installed.
     docker compose run --rm ml python explain.py         # drivers + what-if
     docker compose run --rm ml python export_app_data.py # app_data/ (what the app reads)
     docker compose run --rm ml python make_report.py     # docs/REPORT*.md + charts
+    docker compose run --rm ml python check_outputs.py   # re-verify every promise; exit 1 if one is false
+    docker compose run --rm ml python check_app.py       # app smoke test
 
 **3. App**
 
@@ -49,6 +54,10 @@ The app reads `app_data/`, which is committed, so step 3 works straight after cl
 It has two views: **Latest** (newest snapshot; with the collector running, press "Update to the
 newest data", about a minute and a half) and **Replay** (any moment of the held-out test day,
 forecast next to the real outcome). `out/` holds the full derived tables and is not committed.
+
+## Before committing
+
+    git config core.hooksPath .githooks   # once per clone: blocks secrets, HANDOFF.md, files > 50 MB
 
 ## Checking the collector
 

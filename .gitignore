@@ -24,3 +24,7 @@ HANDOFF.md
 
 # derived outputs (rebuild from data/raw)
 out/
+
+# interview slides (private, never pushed)
+docs/slides.pptx
+make_slides.py

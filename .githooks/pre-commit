@@ -1,0 +1,34 @@
+#!/bin/sh
+# Blocks commits that would publish secrets, private notes or files GitHub rejects.
+# Enable once per clone:  git config core.hooksPath .githooks
+# If this blocks you: unstage the file (git restore --staged <file>). Do not bypass with --no-verify.
+
+fail=0
+max_bytes=$((50 * 1024 * 1024))
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+[ -z "$staged" ] && exit 0
+
+for f in $staged; do
+  base=$(basename "$f")
+  case "$base" in
+    .env.example) ;;
+    .env|.env.*|*.pem|*.key|secrets.toml)
+      echo "pre-commit: $f looks like a secret file. Keep it out of git (it belongs in .gitignore)."; fail=1 ;;
+    HANDOFF.md)
+      echo "pre-commit: $f is private working notes and must never be pushed."; fail=1 ;;
+  esac
+  case "$f" in
+    .claude/*) echo "pre-commit: $f is local Claude Code config, not part of the project."; fail=1 ;;
+  esac
+  size=$(git cat-file -s ":$f" 2>/dev/null || echo 0)
+  if [ "$size" -gt "$max_bytes" ]; then
+    echo "pre-commit: $f is $((size / 1024 / 1024)) MB (> 50 MB). GitHub warns at 50 MB and rejects 100 MB."; fail=1
+  fi
+done
+
+if [ "$fail" -ne 0 ]; then
+  echo "pre-commit: commit blocked. Unstage the files above; do not use --no-verify."
+  exit 1
+fi
+exit 0

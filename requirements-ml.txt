@@ -6,3 +6,4 @@ lightgbm==4.5.0
 shap==0.46.0
 streamlit==1.41.1
 matplotlib==3.9.3
+python-pptx==1.0.2

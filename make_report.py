@@ -43,6 +43,42 @@ def fetch_stats():
     return c
 
 
+def failure_split(gaps):
+    """Bike fetch failures inside the reported gaps vs isolated ones that left no gap."""
+    ranges = [[pd.Timestamp(x) for x in g.split(" -> ")] for g in gaps]
+    inside = outside = 0
+    for line in open("data/fetch_log.jsonl", encoding="utf-8"):
+        e = json.loads(line)
+        if not e["source"].startswith("youbike") or e["ok"]:
+            continue
+        t = pd.Timestamp(e["ts"]).tz_convert("Asia/Taipei").tz_localize(None)
+        hit = any(a - pd.Timedelta(minutes=10) <= t <= b + pd.Timedelta(minutes=10) for a, b in ranges)
+        inside += hit
+        outside += not hit
+    longest = max(((b - a).total_seconds() / 60 + 5 for a, b in ranges), default=0)
+    return inside, outside, int(round(longest))
+
+
+def weekday_count(start, end):
+    days = pd.date_range(pd.Timestamp(start).normalize(), pd.Timestamp(end).normalize(), freq="D")
+    return int((days.dayofweek < 5).sum())
+
+
+def weekend_count(start, end):
+    days = pd.date_range(pd.Timestamp(start).normalize(), pd.Timestamp(end).normalize(), freq="D")
+    return int((days.dayofweek >= 5).sum())
+
+
+DAYTYPE_MATTERS = 0.05     # share of stations moving 1+ bike above which the weekday label "matters"
+
+
+def peak_hours(by_hour):
+    """Hours whose time-of-day push is at least 75% of the largest one, as 'HH:00 to HH:00'."""
+    s = pd.Series({int(h): v for h, v in by_hour.items()})
+    top = sorted(s[s >= 0.75 * s.max()].index)
+    return f"{top[0]:02d}:00", f"{top[-1] + 1:02d}:00"
+
+
 def charts(pred, fam):
     (DOCS / "img").mkdir(parents=True, exist_ok=True)
     pred = pred.assign(hour=pred.slot_local.dt.hour,
@@ -111,9 +147,28 @@ def values():
         n_refill=f"{refill['stations']:,}",
         rain_mm=f"{rain['mm']:.0f}", rain_diff=f"{rain['mean_diff']:+.2f}",
         rain_seen=f"{rain['max_precip_seen']:.1f}", rain_share=f"{100 * rain['share_rows_with_rain']:.0f}",
-        day_moved=f"{100 * day['share_moved_1plus']:.1f}",
+        day_moved=f"{100 * day['share_moved_1plus']:.1f}", day_moved3=f"{100 * day['share_moved_3plus']:.1f}",
     )
     peak = charts(pred, fam)
+    inside, outside, longest = failure_split(ds["missing_ranges_local"])
+    t_a, t_b = peak_hours(ex["drivers"]["time_push_by_hour"]["weekday"])
+    n_wk, n_we = weekday_count(*m["periods_local"]["train"]), weekend_count(*m["periods_local"]["train"])
+    day = ex["what_if_daytype"][0]
+    if day["share_moved_1plus"] < DAYTYPE_MATTERS:
+        v.update(day_verdict_en="The label barely matters: the model reads the day's rhythm from the trend and "
+                                f"from yesterday. With {n_wk} weekdays and {n_we} weekend days in the training data "
+                                "it cannot learn the calendar.",
+                 day_verdict_zh=f"標籤幾乎沒影響：模型從趨勢與昨天的型態讀出當天的節奏。訓練資料只有 {n_wk} 個平日、"
+                                f"{n_we} 個週末天，學不到日曆效應。")
+    else:
+        v.update(day_verdict_en=f"An early signal: on a Sunday the forecast changes by {day['mean_change_as_sunday'] - day['mean_change_weekday']:+.2f} "
+                                "bikes on average and busy commuter stations drain less. It is learned from only "
+                                f"{n_we} weekend days, so treat it as a hint, not a finding.",
+                 day_verdict_zh=f"初步訊號：改成週日後，預測平均變動 {day['mean_change_as_sunday'] - day['mean_change_weekday']:+.2f} 台，"
+                                f"通勤站流失變少。但只從 {n_we} 個週末天學到，只能當線索，不能當結論。")
+    v["fail_out_en"] = "The other one was" if outside == 1 else f"The other {outside} were"
+    v.update(fail_in=inside, fail_out=outside, gap_min=longest, time_a=t_a, time_b=t_b,
+             n_weekdays=n_wk, n_weekend=n_we)
     v.update(peak_hour=f"{peak['peak_hour']:02d}", peak_now=f"{peak['peak_now']:.2f}",
              peak_model=f"{peak['peak_model']:.2f}")
     for lang in (0, 1):
@@ -172,7 +227,7 @@ flowchart LR
 | Bike fetches succeeded / failed | {bike_ok} / {bike_fail} |
 | Weather fetches succeeded / failed | {w_ok} / {w_fail} |
 
-- **Gaps.** {gaps}. The bike failures all fall in this window and were DNS failures on the collecting machine, not the APIs. The collector logged them and resumed by itself.
+- **Gaps.** {gaps}. {fail_in} of the {bike_fail} bike fetch failures fall in this window: DNS failures on the collecting machine, not the APIs. The collector logged them and resumed by itself. {fail_out_en} isolated and left no gap in the data.
 - **Weather failures look worse than they are.** After a failure the collector retries every 10 minutes and logs each try. Every successful download carries a 48-hour forecast, so only {weather_missing} slots have no weather at all.
 - **Time.** File names are UTC fetch times. Features use Asia/Taipei.
 - **Leakage rule.** Each row only uses data fetched at or before its own slot. The weather for the target hour comes from the forecast we had already downloaded then, never from what was observed later.
@@ -203,7 +258,7 @@ A 1-hour gap separates the parts, because a row at 09:20 already "knows" the 10:
 
 - **"Same as now" is a strong baseline.** Most stations barely move within an hour. The honest comparison is on the rows that do move: {mv_now} vs {mv_model} bikes, **{mv_gain}% better**.
 - **Hardest hour.** {peak_hour}:00, where the baseline error is {peak_now} bikes and the model's is {peak_model}.
-- **"Same as yesterday" loses badly** because the test day and the day before it are different kinds of day, and because rebalancing differs day to day.
+- **"Same as yesterday" loses badly.** Copying yesterday also copies yesterday's one-off events: a truck that refilled a station at 08:00 yesterday may come at 09:30 today, and a busy hour yesterday may be quiet today. The current count already reflects today.
 - **"Same time last week" is not possible** with {days} days of data.
 - **Empty / full warnings.** When the model says a station will be empty it is right {e_p}% of the time, but it catches {e_r}% of the empty stations (baseline: {eb_p}% / {eb_r}%). For full: {f_p}% right, {f_r}% caught. Precise but not complete; the threshold is conservative.
 
@@ -220,14 +275,14 @@ Each forecast is split into contributions with SHAP values. The table is the ave
 - **Stations drift back to the middle.** How full the station is pushes the forecast by {fill_empty} bikes when it is under 10% full and by {fill_full} when it is over 90% full.
 - **Yesterday matters more than the calendar.** The change the station saw at this time yesterday is one of the strongest single signals.
 - **Neighbours carry the area's direction.** If the five nearest stations are draining, this one probably is too.
-- **Time of day matters most on weekday mornings**, 06:00 to 08:00.
+- **Time of day matters most on weekday mornings**, {time_a} to {time_b}.
 
 **What-if scenarios** (take real rows, change one thing, predict again):
 
 | Scenario | Result | Can it be trusted? |
 |---|---|---|
 | A truck adds {k} bikes at {rh}:00 on a weekday ({n_refill} stations) | On average **{kept}** extra bikes are still there an hour later. Worst 10% of stations keep under {kept10}; best 10% keep over {kept90}. | Usable. Matches what happened after real sudden jumps in the test period. It is correlation, not a controlled experiment. |
-| Same weekday morning, but labelled as a Sunday | {day_moved}% of stations change by 1+ bike | The label barely matters: the model reads the day's rhythm from the trend and from yesterday. With one or two weekdays of data it cannot learn the calendar. |
+| Same weekday morning, but labelled as a Sunday | {day_moved}% of stations change by 1+ bike ({day_moved3}% by 3+) | {day_verdict_en} |
 | {rain_mm} mm/h of rain | {rain_diff} bikes on average | **No.** The heaviest rain observed was {rain_seen} mm/h; {rain_share}% of rows had any rain. |
 
 The first scenario is the operational one: it shows where added bikes stay and where they are gone within the hour.
@@ -236,7 +291,7 @@ The first scenario is the operational one: it shows where added bikes stay and w
 
 ![App in replay mode](img/app_replay.jpg)
 
-The app has two views. **Latest** forecasts from the newest snapshot. **Replay** lets you pick any moment of the held-out test day and puts the forecast (orange, dashed) next to what really happened (grey), using the model that never saw that day. The screenshot also shows a rebalancing jump at about 04:30 that no public data announces.
+The app has two views. **Latest** forecasts from the newest snapshot. **Replay** lets you pick any moment of the held-out test day and puts the forecast (orange, dashed) next to what really happened (grey), using the model that never saw that day. The screenshot (from an earlier run, so a different test day) also shows a rebalancing jump at about 04:30 that no public data announces.
 
 ## 6. Limits
 
@@ -245,7 +300,7 @@ The app has two views. **Latest** forecasts from the newest snapshot. **Replay**
 - **Almost no rain** during collection, so the weather effect is not established.
 - **Demand is censored.** An empty station shows zero rentals whatever the real demand was.
 - **What-ifs are correlational.** They describe what followed similar situations in the past.
-- **Single collector on a laptop.** One network outage cost 135 minutes of data.
+- **Single collector on a laptop.** One network outage cost {gap_min} minutes of data.
 - **The app shows the newest processed snapshot**, not a live feed.
 
 ## 7. With another month
@@ -320,7 +375,7 @@ flowchart LR
 | 車數抓取 成功／失敗 | {bike_ok}／{bike_fail} |
 | 天氣抓取 成功／失敗 | {w_ok}／{w_fail} |
 
-- **缺口。** {gaps}。車數的失敗全部落在這段時間，原因是收集主機的 DNS 解析失敗，不是 API 的問題。收集程式有記錄並自行恢復。
+- **缺口。** {gaps}。{bike_fail} 次車數抓取失敗中，有 {fail_in} 次落在這段時間，原因是收集主機的 DNS 解析失敗，不是 API 的問題。收集程式有記錄並自行恢復。其餘 {fail_out} 次是零星失敗，沒有造成資料缺口。
 - **天氣失敗次數看起來多，實際影響小。** 失敗後每 10 分鐘重試一次，每次都記一行。每次成功下載都帶有 48 小時預報，所以完全沒有天氣資料的時段只有 {weather_missing} 個。
 - **時間。** 檔名是 UTC 抓取時間，特徵使用台灣時間。
 - **防洩漏規則。** 每一列只使用在該時段當下或之前抓到的資料。目標時段的天氣取自當時已下載的預報，不使用事後的觀測值。
@@ -351,7 +406,7 @@ flowchart LR
 
 - **「跟現在一樣」是很強的基準。** 多數站點一小時內變化不大。公平的比較要看有變動的時候：{mv_now} 對 {mv_model} 台，**好 {mv_gain}%**。
 - **最難的時段。** {peak_hour}:00，基準誤差 {peak_now} 台，模型 {peak_model} 台。
-- **「跟昨天一樣」輸很多**，因為測試日與前一天是不同型態的日子，而且每天的調度不同。
+- **「跟昨天一樣」輸很多。** 照抄昨天，也會照抄昨天的偶發事件：昨天 08:00 來補車，今天可能 09:30 才來；昨天的尖峰今天也可能很冷清。而「現在的車數」已經反映了今天的狀況。
 - **「跟上週同時間一樣」做不到**，資料只有 {days} 天。
 - **空站／滿站預警。** 模型說會空站時 {e_p}% 是對的，但只抓到 {e_r}% 的空站（基準為 {eb_p}%／{eb_r}%）。滿站：{f_p}% 正確，抓到 {f_r}%。準但不全，門檻設得保守。
 
@@ -368,14 +423,14 @@ flowchart LR
 - **站點會往中間靠。** 滿度低於 10% 時，「多滿」這條線索把預測推動 {fill_empty} 台；高於 90% 時推動 {fill_full} 台。
 - **昨天比日曆重要。** 站點昨天同時段的變化量是最強的單一訊號之一。
 - **鄰近站帶出整個區域的方向。** 最近的五個站都在掉車，這一站多半也是。
-- **時段的影響集中在平日早上** 06:00 到 08:00。
+- **時段的影響集中在平日早上** {time_a} 到 {time_b}。
 
 **what-if 情境**（取真實資料列，只改一項，重新預測）：
 
 | 情境 | 結果 | 可信嗎？ |
 |---|---|---|
 | 平日 {rh}:00 調度車補進 {k} 台（{n_refill} 個站） | 一小時後平均還多 **{kept}** 台。最差的一成站點留不到 {kept10} 台，最好的一成留超過 {kept90} 台。 | 可用。與測試期真實突增事件之後的走勢相符。它是相關性，不是對照實驗。 |
-| 同一個平日早上，改標成週日 | {day_moved}% 的站點變動 1 台以上 | 標籤幾乎沒影響：模型從趨勢與昨天的型態讀出當天的節奏。只有一兩個平日的資料，學不到日曆效應。 |
+| 同一個平日早上，改標成週日 | {day_moved}% 的站點變動 1 台以上（3 台以上 {day_moved3}%） | {day_verdict_zh} |
 | 降雨 {rain_mm} mm／小時 | 平均 {rain_diff} 台 | **不可信。** 觀測到的最大雨量是 {rain_seen} mm／小時，有降雨的資料列佔 {rain_share}%。 |
 
 第一個情境有營運意義：它指出補進去的車在哪些站留得住，在哪些站一小時內就被借光。
@@ -384,7 +439,7 @@ flowchart LR
 
 ![回放模式的 App](img/app_replay.jpg)
 
-App 有兩種檢視。**最新**：用最新一筆快照做預測。**回放**：可選測試日的任一時間點，把預測（橘色虛線）和實際結果（灰線）並排，使用的是沒看過那一天的模型。截圖裡也看得到凌晨 4:30 左右的一次調度跳升，這在公開資料中沒有任何預告。
+App 有兩種檢視。**最新**：用最新一筆快照做預測。**回放**：可選測試日的任一時間點，把預測（橘色虛線）和實際結果（灰線）並排，使用的是沒看過那一天的模型。截圖（來自較早的一次執行，所以是另一個測試日）裡也看得到凌晨 4:30 左右的一次調度跳升，這在公開資料中沒有任何預告。
 
 ## 6. 限制
 
@@ -393,7 +448,7 @@ App 有兩種檢視。**最新**：用最新一筆快照做預測。**回放**�
 - **收集期間幾乎沒下雨**，天氣的影響尚未確立。
 - **需求被截斷。** 空站的借車數是零，但真實需求不是零。
 - **what-if 是相關性。** 它描述過去類似狀況之後發生了什麼。
-- **只有一台筆電在收集。** 一次斷網就少了 135 分鐘資料。
+- **只有一台筆電在收集。** 一次斷網就少了 {gap_min} 分鐘資料。
 - **App 顯示的是最新一次處理過的快照**，不是即時串流。
 
 ## 7. 如果再多一個月
